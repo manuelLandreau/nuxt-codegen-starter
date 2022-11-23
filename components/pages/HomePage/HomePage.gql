@@ -1,0 +1,6 @@
+query homepage($locale: SiteLocale!) {
+    homepage(locale: $locale) {
+        id
+        title
+    }
+}
