@@ -3,19 +3,19 @@ import urql, {
 	dedupExchange,
 	fetchExchange,
 	ssrExchange,
-	subscriptionExchange
+	subscriptionExchange,
 } from '@urql/vue';
 import { createClient as createWSClient } from 'graphql-ws';
 import { devtoolsExchange } from '@urql/devtools';
 import { WebSocket } from 'ws';
-import { defineNuxtPlugin, useRuntimeConfig } from '#app';
+import { defineNuxtPlugin, useRuntimeConfig } from 'nuxt/app';
 
 export default defineNuxtPlugin((nuxtApp) => {
 	const { graphqlApiURL, graphqlApiTOKEN, appEnv } = useRuntimeConfig();
 
 	// Create SSR exchange
 	const ssr = ssrExchange({
-		isClient: process.client
+		isClient: process.client,
 	});
 
 	// Extract SSR payload once app is rendered on the server
@@ -35,7 +35,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 	// Subscription over Websocket exchange
 	const wsClient = createWSClient({
 		url: (graphqlApiURL as string).replace('http', 'ws'),
-		webSocketImpl: process.server && WebSocket
+		webSocketImpl: process.server && WebSocket,
 	});
 	const wsExchange = subscriptionExchange({
 		forwardSubscription(operation) {
@@ -43,11 +43,11 @@ export default defineNuxtPlugin((nuxtApp) => {
 				subscribe: (sink) => {
 					const dispose = wsClient.subscribe(operation, sink);
 					return {
-						unsubscribe: dispose
+						unsubscribe: dispose,
 					};
-				}
+				},
 			};
-		}
+		},
 	});
 
 	// Custom exchanges
@@ -56,7 +56,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 		cacheExchange,
 		ssr,
 		fetchExchange,
-		wsExchange
+		wsExchange,
 	];
 
 	// Devtools exchange
@@ -69,10 +69,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 		fetchOptions: () => {
 			return {
 				headers: {
-					authorization: graphqlApiTOKEN ? `Bearer ${graphqlApiTOKEN}` : ''
-				}
+					authorization: graphqlApiTOKEN ? `Bearer ${graphqlApiTOKEN}` : '',
+				},
 			};
 		},
-		exchanges
+		exchanges,
 	});
 });

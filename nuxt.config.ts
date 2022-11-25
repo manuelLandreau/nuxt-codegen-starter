@@ -3,23 +3,26 @@ import { SiteLocale } from './graphql/types';
 
 const locales = Object.values(SiteLocale).map((siteLocale) => ({
 	code: siteLocale,
-	file: `${siteLocale}.json`
+	file: `${siteLocale}.json`,
 }));
 
 const runtimeConfig = {
 	public: {
 		appEnv: process.env.APP_ENV,
 		graphqlApiURL: process.env.GRAPHQL_API_URL,
-		graphqlApiTOKEN: process.env.GRAPHQL_API_TOKEN
-	}
+		graphqlApiTOKEN: process.env.GRAPHQL_API_TOKEN,
+	},
 };
 
 export default defineNuxtConfig({
 	typescript: { strict: true },
 	build: {
-		transpile: ['@urql/vue']
+		transpile: ['@urql/vue'],
 	},
 	css: ['~/assets/css/main.css'],
+	// imports: {
+	// 	autoImport: false,
+	// },
 	modules: [
 		[
 			'@nuxtjs/i18n',
@@ -29,16 +32,16 @@ export default defineNuxtConfig({
 				langDir: 'locales/',
 				vueI18n: {
 					legacy: false,
-					locale: 'en'
-				}
-			}
-		]
+					locale: 'en',
+				},
+			},
+		],
 	],
 	postcss: {
 		plugins: {
 			tailwindcss: {},
-			autoprefixer: {}
-		}
+			autoprefixer: {},
+		},
 	},
-	runtimeConfig
+	runtimeConfig,
 });

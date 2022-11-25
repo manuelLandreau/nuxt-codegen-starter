@@ -4,14 +4,14 @@ export interface PossibleTypesResultData {
   }
 }
 const result: PossibleTypesResultData = {
-	possibleTypes: {
-		FileFieldInterface: ['FileField'],
-		RecordInterface: [
-			'HomepageRecord',
-			'ProfileRecord',
-			'SocialRecord',
-			'ThemeRecord'
-		]
-	}
+  possibleTypes: {
+    FileFieldInterface: ['FileField'],
+    RecordInterface: [
+      'HomepageRecord',
+      'ProfileRecord',
+      'SocialRecord',
+      'ThemeRecord',
+    ],
+  },
 };
 export default result;

@@ -6,10 +6,10 @@ const config: CodegenConfig = {
 		{
 			[process.env.GRAPHQL_API_URL as string]: {
 				headers: {
-					Authorization: process.env.GRAPHQL_API_TOKEN as string
-				}
-			}
-		}
+					Authorization: process.env.GRAPHQL_API_TOKEN as string,
+				},
+			},
+		},
 	],
 	documents: ['**/*.gql'],
 	generates: {
@@ -17,22 +17,22 @@ const config: CodegenConfig = {
 			plugins: ['typescript'],
 			config: {
 				namingConvention: {
-					enumValues: 'change-case-all#upperCaseFirst'
-				}
-			}
+					enumValues: 'change-case-all#upperCaseFirst',
+				},
+			},
 		},
 		'graphql/introspection-result.ts': {
-			plugins: ['fragment-matcher']
+			plugins: ['fragment-matcher'],
 		},
 		'components/': {
 			preset: 'near-operation-file',
 			presetConfig: {
-				baseTypesPath: 'graphql/types.ts'
+				baseTypesPath: 'graphql/types.ts',
 			},
 			plugins: ['typescript-operations', 'typescript-vue-urql'],
 			config: {
 				namingConvention: {
-					enumValues: 'change-case-all#upperCaseFirst'
+					enumValues: 'change-case-all#upperCaseFirst',
 				},
 				withCompositionFunctions: false,
 				strictScalars: true,
@@ -46,11 +46,11 @@ const config: CodegenConfig = {
 					ItemId: 'string',
 					JsonField: 'unknown',
 					MetaTagAttributes: 'Record<string, string>',
-					UploadId: 'string'
-				}
-			}
-		}
-	}
+					UploadId: 'string',
+				},
+			},
+		},
+	},
 };
 
 export default config;

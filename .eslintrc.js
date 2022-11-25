@@ -2,41 +2,27 @@ module.exports = {
 	env: {
 		browser: true,
 		es2021: true,
-		node: true
+		node: true,
 	},
 	extends: [
-		'eslint:recommended',
-		'plugin:vue/vue3-essential',
 		'plugin:@typescript-eslint/recommended',
-		'prettier'
+		'plugin:vue/vue3-recommended',
+		'plugin:nuxt/recommended',
+		'prettier',
 	],
 	ignorePatterns: ['**/*.generated.ts', '**/types.ts'],
 	overrides: [],
-	parser: '@typescript-eslint/parser',
+	plugins: ['@typescript-eslint'],
 	parserOptions: {
+		parser: require.resolve('@typescript-eslint/parser'),
+		extraFileExtensions: ['.vue'],
 		ecmaVersion: 'latest',
-		sourceType: 'module'
+		sourceType: 'module',
 	},
-	plugins: [
-		'vue',
-		'@typescript-eslint',
-	],
 	rules: {
-		'indent': [
-			'error',
-			'tab'
-		],
-		'linebreak-style': [
-			'error',
-			'unix'
-		],
-		'quotes': [
-			'error',
-			'single'
-		],
-		'semi': [
-			'error',
-			'always'
-		]
-	}
+		'linebreak-style': ['error', 'unix'],
+		'quotes': ['error', 'single'],
+		'semi': ['error', 'always'],
+		'vue/multi-word-component-names': 'off'
+	},
 };

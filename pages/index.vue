@@ -1,8 +1,12 @@
 <script setup lang="ts">
-import HomePage from '@/components/pages/HomePage/HomePage.vue'
-definePageMeta({ title: 'Home' })
+import MainLayout from '@/layouts/MainLayout';
+import HomePage from '@/components/pages/HomePage/HomePage.vue';
+
+definePageMeta({ title: 'Home' });
 </script>
 
 <template>
-  <HomePage />
+  <MainLayout>
+    <HomePage />
+  </MainLayout>
 </template>
